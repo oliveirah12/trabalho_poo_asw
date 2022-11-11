@@ -23,10 +23,16 @@ import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Timer;
+import java.sql.Date;
 
 public class FuncionarioAtendente extends JFrame {
 
 	private JPanel contentPane;
+	/**
+	 * @wbp.nonvisual location=275,349
+	 */
+	private final Date date = new Date(0L);
 
 	/**
 	 * Launch the application.
@@ -48,6 +54,8 @@ public class FuncionarioAtendente extends JFrame {
 	 * Create the frame.
 	 */
 	public FuncionarioAtendente() {
+		date.setMinutes(23);
+		date.setHours(12);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 715, 461);
