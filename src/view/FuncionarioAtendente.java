@@ -29,10 +29,6 @@ import java.sql.Date;
 public class FuncionarioAtendente extends JFrame {
 
 	private JPanel contentPane;
-	/**
-	 * @wbp.nonvisual location=275,349
-	 */
-	private final Date date = new Date(0L);
 
 	/**
 	 * Launch the application.
@@ -54,8 +50,7 @@ public class FuncionarioAtendente extends JFrame {
 	 * Create the frame.
 	 */
 	public FuncionarioAtendente() {
-		date.setMinutes(23);
-		date.setHours(12);
+		setTitle("Atendimento");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 715, 461);
@@ -139,6 +134,10 @@ public class FuncionarioAtendente extends JFrame {
 		lblGuicheBd.setBounds(316, 0, 46, 23);
 		panelInfos.add(lblGuicheBd);
 		
+		JLabel lblHora = new JLabel("HH:mm:ss");
+		lblHora.setBounds(414, 4, 62, 14);
+		panelInfos.add(lblHora);
+		
 		JLabel lblSenha = new JLabel("Senha");
 		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		lblSenha.setBounds(84, 133, 60, 27);
@@ -200,5 +199,44 @@ public class FuncionarioAtendente extends JFrame {
 		});
 		btnVoltar.setBounds(10, 362, 61, 23);
 		contentPane.add(btnVoltar);
+		
+		JLabel lblChamada = new JLabel("Chamada:");
+		lblChamada.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblChamada.setBounds(97, 373, 53, 15);
+		contentPane.add(lblChamada);
+		
+		JLabel lblHoraChamada = new JLabel("HH:mm");
+		lblHoraChamada.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblHoraChamada.setBounds(155, 373, 60, 15);
+		contentPane.add(lblHoraChamada);
+		
+		JLabel lblIncio = new JLabel("In\u00EDcio:");
+		lblIncio.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblIncio.setBounds(225, 371, 32, 15);
+		contentPane.add(lblIncio);
+		
+		JLabel lblHoraChamada_1 = new JLabel("HH:mm");
+		lblHoraChamada_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblHoraChamada_1.setBounds(263, 371, 60, 17);
+		contentPane.add(lblHoraChamada_1);
+		
+		JLabel lblTermino = new JLabel("T\u00E9rmino:");
+		lblTermino.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblTermino.setBounds(333, 371, 49, 15);
+		contentPane.add(lblTermino);
+		
+		JLabel lblHoraTermino = new JLabel("HH:mm");
+		lblHoraTermino.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblHoraTermino.setBounds(386, 371, 60, 17);
+		contentPane.add(lblHoraTermino);
+		
+		JLabel lblTempoAtendimento = new JLabel("Tempo de Atendimento");
+		lblTempoAtendimento.setBounds(541, 360, 111, 14);
+		contentPane.add(lblTempoAtendimento);
+		
+		JLabel lblTempo = new JLabel("HH:mm:ss");
+		lblTempo.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTempo.setBounds(575, 374, 60, 14);
+		contentPane.add(lblTempo);
 	}
 }

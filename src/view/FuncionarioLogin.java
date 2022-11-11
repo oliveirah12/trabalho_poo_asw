@@ -38,6 +38,7 @@ public class FuncionarioLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public FuncionarioLogin() {
+		setTitle("Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 301, 407);
 		contentPane = new JPanel();
