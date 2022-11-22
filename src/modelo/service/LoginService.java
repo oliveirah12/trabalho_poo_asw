@@ -16,20 +16,11 @@ public class LoginService {
         this.dao = new LoginDao();
     }
     
-    public void login(Funcionario calculo) {
-    dao.login(calculo);
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    public Funcionario login(Funcionario calculo) {
+    return  dao.login(calculo);
+    }   
 
-}
+    }
 
 
 

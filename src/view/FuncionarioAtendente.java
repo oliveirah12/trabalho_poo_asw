@@ -7,7 +7,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
+
+import controller.SenhaController;
+import modelo.entidade.Senha;
+
 import java.awt.Color;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -25,10 +30,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.Timer;
 import java.sql.Date;
+import javax.swing.JTextField;
 
 public class FuncionarioAtendente extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textSenha;
+	private JTextField textStatus;
+	private int p=0 ;
+	private  Senha s = new Senha ();
 
 	/**
 	 * Launch the application.
@@ -62,7 +72,7 @@ public class FuncionarioAtendente extends JFrame {
 		
 		JPanel panelCabecalho = new JPanel();
 		panelCabecalho.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panelCabecalho.setBounds(0, 0, 699, 85);
+		panelCabecalho.setBounds(0, 0, 699, 35);
 		contentPane.add(panelCabecalho);
 		panelCabecalho.setLayout(null);
 		
@@ -70,37 +80,6 @@ public class FuncionarioAtendente extends JFrame {
 		lblAtendendo.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblAtendendo.setBounds(10, 11, 83, 20);
 		panelCabecalho.add(lblAtendendo);
-		
-		JCheckBox chckbxPreferencial = new JCheckBox("Preferencial");
-		chckbxPreferencial.setEnabled(false);
-		chckbxPreferencial.setBounds(98, 7, 97, 23);
-		panelCabecalho.add(chckbxPreferencial);
-		
-		JCheckBox chckbxNormal = new JCheckBox("Normal");
-		chckbxNormal.setEnabled(false);
-		chckbxNormal.setSelected(true);
-		chckbxNormal.setBounds(98, 33, 97, 23);
-		panelCabecalho.add(chckbxNormal);
-		
-		JCheckBox chckbxServico1 = new JCheckBox("Servi\u00E7o 1");
-		chckbxServico1.setEnabled(false);
-		chckbxServico1.setBounds(220, 7, 97, 23);
-		panelCabecalho.add(chckbxServico1);
-		
-		JCheckBox chckbxServico2 = new JCheckBox("Servi\u00E7o 2");
-		chckbxServico2.setEnabled(false);
-		chckbxServico2.setBounds(220, 33, 97, 23);
-		panelCabecalho.add(chckbxServico2);
-		
-		JCheckBox chckbxServico3 = new JCheckBox("Servi\u00E7o 3");
-		chckbxServico3.setEnabled(false);
-		chckbxServico3.setBounds(220, 59, 97, 23);
-		panelCabecalho.add(chckbxServico3);
-		
-		JButton btnFila = new JButton("Fila");
-		btnFila.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnFila.setBounds(613, 19, 76, 45);
-		panelCabecalho.add(btnFila);
 		
 		JPanel panelInfos = new JPanel();
 		panelInfos.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -138,29 +117,31 @@ public class FuncionarioAtendente extends JFrame {
 		lblHora.setBounds(414, 4, 62, 14);
 		panelInfos.add(lblHora);
 		
-		JLabel lblSenha = new JLabel("Senha");
+		JLabel lblSenha = new JLabel("Senha  :");
 		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblSenha.setBounds(84, 133, 60, 27);
+		lblSenha.setBounds(10, 62, 92, 27);
 		contentPane.add(lblSenha);
 		
-		JLabel lblSenhaBd = new JLabel("SENHABD");
-		lblSenhaBd.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSenhaBd.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		lblSenhaBd.setBounds(0, 213, 234, 49);
-		contentPane.add(lblSenhaBd);
-		
-		JLabel lblStatus = new JLabel("Status");
+		JLabel lblStatus = new JLabel("Status :");
 		lblStatus.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblStatus.setBounds(342, 133, 60, 27);
+		lblStatus.setBounds(10, 148, 75, 27);
 		contentPane.add(lblStatus);
 		
-		JLabel lblStatusBd = new JLabel("STATUS BD");
-		lblStatusBd.setHorizontalAlignment(SwingConstants.CENTER);
-		lblStatusBd.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		lblStatusBd.setBounds(225, 213, 309, 49);
-		contentPane.add(lblStatusBd);
-		
 		JButton btnFinalizar = new JButton("Finalizar");
+		btnFinalizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+				
+				 SenhaController controller = new SenhaController();
+		         controller.finalizaSenha(FuncionarioAtendente.this , s );
+				
+				
+				
+				
+				
+			}
+		});
 		btnFinalizar.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnFinalizar.setBounds(502, 300, 187, 49);
 		contentPane.add(btnFinalizar);
@@ -176,6 +157,43 @@ public class FuncionarioAtendente extends JFrame {
 		contentPane.add(btnIniciar);
 		
 		JButton btnChamar = new JButton("Chamar");
+		btnChamar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+		
+				
+		if( p < 2)	{	
+				 SenhaController controller = new SenhaController();
+		         s =   controller.chamarSenhap(FuncionarioAtendente.this);	
+		         
+		         textSenha.setText(String.valueOf (+ s.getNumero() ));
+		         textStatus.setText(String.valueOf (+ s.getPrioridade() ));
+		         p ++ ;   
+		         JOptionPane.showMessageDialog(null," "+ p);
+		}
+		
+		  
+				
+		else { 
+			
+			
+			
+			
+			
+			
+			JOptionPane.showMessageDialog(null," fila normal ");
+			
+			p = 0 ;
+			
+		}
+				
+				
+				
+				
+				
+				
+			}
+		});
 		btnChamar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnChamar.setBounds(502, 140, 92, 49);
 		contentPane.add(btnChamar);
@@ -238,5 +256,15 @@ public class FuncionarioAtendente extends JFrame {
 		lblTempo.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTempo.setBounds(575, 374, 60, 14);
 		contentPane.add(lblTempo);
+		
+		textSenha = new JTextField();
+		textSenha.setBounds(102, 70, 113, 20);
+		contentPane.add(textSenha);
+		textSenha.setColumns(10);
+		
+		textStatus = new JTextField();
+		textStatus.setBounds(95, 156, 120, 20);
+		contentPane.add(textStatus);
+		textStatus.setColumns(10);
 	}
 }

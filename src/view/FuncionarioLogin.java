@@ -5,18 +5,26 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.LoginController;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
+import modelo.entidade.Funcionario;
+import javax.swing.JPasswordField;
 
 public class FuncionarioLogin extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtLogin;
+	private JPasswordField passwordSenha;
 
 	/**
 	 * Launch the application.
@@ -56,48 +64,99 @@ public class FuncionarioLogin extends JFrame {
 		lblLinha.setBounds(43, 48, 198, 14);
 		contentPane.add(lblLinha);
 		
-		JLabel lblLogin = new JLabel("Login");
+		JLabel lblLogin = new JLabel("Nome");
 		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblLogin.setBounds(43, 135, 44, 17);
 		contentPane.add(lblLogin);
 		
-		textField = new JTextField();
-		textField.setBounds(43, 155, 198, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtLogin = new JTextField();
+		txtLogin.setBounds(43, 155, 198, 20);
+		contentPane.add(txtLogin);
+		txtLogin.setColumns(10);
 		
-		JLabel lblMatricula = new JLabel("Matr\u00EDcula");
+		JLabel lblMatricula = new JLabel("Senha");
 		lblMatricula.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblMatricula.setBounds(43, 205, 71, 17);
 		contentPane.add(lblMatricula);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(43, 225, 198, 20);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
-		
-		JButton btnEntrar = new JButton("Entrar");
-		btnEntrar.addActionListener(new ActionListener() {
+		JButton btnLogin = new JButton("Entrar");
+		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 
-				//Código para fazer o login e conectar com banco
+			
 				
-				FuncionarioAtendente funcionarioAtendente = new FuncionarioAtendente();
-				funcionarioAtendente.setVisible(true);
-				dispose();
+				
+		 login ();	
 				
 			}
 		});
-		btnEntrar.setBounds(162, 288, 79, 23);
-		contentPane.add(btnEntrar);
-		
-		JButton btnSair = new JButton("Sair");
-		btnSair.addActionListener(new ActionListener() {
+		btnLogin.setBounds(162, 288, 79, 23);
+		contentPane.add(btnLogin);
+	
+		JButton btnCancelar = new JButton("Sair");
+		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(1);
 			}
 		});
-		btnSair.setBounds(43, 288, 79, 23);
-		contentPane.add(btnSair);
+		btnCancelar.setBounds(43, 288, 79, 23);
+		contentPane.add(btnCancelar);
+		
+		passwordSenha = new JPasswordField();
+		passwordSenha.setBounds(43, 233, 198, 20);
+		contentPane.add(passwordSenha);
 	}
+	
+	private void login () {
+	
+	      
+		   LoginController controller = new LoginController();
+		   Funcionario  f  =   controller.login(FuncionarioLogin.this);
+		    	
+//	   JOptionPane.showMessageDialog(null," "+ f.getCargo() );	
+		   
+		if(f.getCargo().equals("adm") || f.getCargo().equals("atendente")) {	
+			
+			
+      
+		switch (f.getCargo()){	
+				case "adm" :
+					MenuGerente tela0 = new MenuGerente();
+					tela0.setVisible(true);
+				dispose();
+					break ;	
+					
+				case "atendente":
+					FuncionarioAtendente tela1 = new FuncionarioAtendente();
+					tela1.setVisible(true);
+				dispose();
+					break ;	
+					
+				
+		}}
+		
+	    else { JOptionPane.showMessageDialog(null,"falha ao localizar funcionario"); 
+	    
+	   }
+	}
+		
+	
+
+	public JTextField getTxtLogin() {
+		return txtLogin;
+	}
+
+	public void setTxtLogin(JTextField txtLogin) {
+		this.txtLogin = txtLogin;
+	}
+
+	public JPasswordField getPasswordSenha() {
+		return passwordSenha;
+	}
+
+	public void setPasswordSenha(JPasswordField passwordSenha) {
+		this.passwordSenha = passwordSenha;
+	}
+
+	
 }

@@ -20,12 +20,14 @@ public class LoginDao {
 	private Funcionario f ;
 	
 
-	public ResultSet login(Funcionario funcionario) {
+	public Funcionario login(Funcionario funcionario) {
 		
+	
+		 Funcionario f = new Funcionario();
 		 conn  = new Conexao ().Conexao();	
          
          try {  
-        	 String sql = "select * from funcionario where nome = ? and senha=?";
+        	 String sql = "select * from funcionario where nomeFuncionario = ? and senha=?";
         			
         stmt = conn.prepareStatement(sql);
       
@@ -34,50 +36,22 @@ public class LoginDao {
         
         
       	 ResultSet consulta  =  stmt.executeQuery();
-      	 
+      	
+      	 if (consulta.next()) {
+           
+             f.setCargo(consulta.getString("cargo"));
+             return f ;
+             }
       
-      	 
-      	 return consulta ;
-                   
-         	}
-    
-      
-         catch (SQLException erro) {
+     // 	JOptionPane.showMessageDialog(null,"= "+ consulta.getString("cargo"));	
+      	 else {	 JOptionPane.showMessageDialog(null,"senha ou usuario incorreto"); 
+      	return null ; }
+      	 	 
+         }catch (SQLException erro) {
           
         	 JOptionPane.showMessageDialog(null,"usuario dao "+erro);  
              return null ;
-              }
- 		
- 		 
-         
-         
-         
-	
-		
-		
-		
-		
-		
-		
-		
-	
-		// TODO Auto-generated method stub
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	}
-
-
-
-
-	}
+             }  }}
 	
 	
 

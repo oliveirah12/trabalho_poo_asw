@@ -18,9 +18,11 @@ import java.awt.event.ActionEvent;
 public class ClienteServicos extends JFrame {
 
 	private JPanel contentPane;
+	private int servico ;
+	
 
 	/**
-	 * Launch the application.wrerwrerw
+	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -57,11 +59,18 @@ public class ClienteServicos extends JFrame {
 		lblLinha.setBounds(54, 42, 528, 14);
 		contentPane.add(lblLinha);
 		
-		JButton btnServico1 = new JButton("Servi\u00E7o 1");
+		// nome do botao 
+		JButton btnServico1 = new JButton("enserir a variavel aki \u00E7o ");
 		btnServico1.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
+				
 				ClientePrioridade clientePrioridade = new ClientePrioridade();
-				clientePrioridade.setVisible(true);
+				
+			    servico =1 ;
+				
+			    clientePrioridade.setServico(servico);
+			   	clientePrioridade.setVisible(true);
 				dispose();
 			}
 		});
@@ -70,11 +79,41 @@ public class ClienteServicos extends JFrame {
 		contentPane.add(btnServico1);
 		
 		JButton btnServico2 = new JButton("Servi\u00E7o 2");
+		btnServico2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ClientePrioridade clientePrioridade = new ClientePrioridade();
+				
+			    servico =2 ;
+				
+			    clientePrioridade.setServico(servico);
+			   	clientePrioridade.setVisible(true);
+				dispose();
+			}
+		});
 		btnServico2.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		btnServico2.setBounds(228, 163, 199, 57);
 		contentPane.add(btnServico2);
 		
 		JButton btnServico3 = new JButton("Servi\u00E7o 3");
+		btnServico3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ClientePrioridade clientePrioridade = new ClientePrioridade();
+				
+			    servico = 3 ;
+				
+			    clientePrioridade.setServico(servico);
+			   	clientePrioridade.setVisible(true);
+				dispose();	
+				
+				
+				
+				
+				
+				
+			}
+		});
 		btnServico3.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		btnServico3.setBounds(228, 231, 199, 57);
 		contentPane.add(btnServico3);

@@ -14,6 +14,25 @@ import java.awt.event.ActionEvent;
 public class ClientePrioridade extends JFrame {
 
 	private JPanel contentPane;
+	private int servico ;
+	private int prioridade ;
+	
+
+	public int getServico() {
+		return servico;
+	}
+
+	public void setServico(int servico) {
+		this.servico = servico;
+	}
+
+	public int getPrioridade() {
+		return prioridade;
+	}
+
+	public void setPrioridade(int prioridade) {
+		this.prioridade = prioridade;
+	}
 
 	/**
 	 * Launch the application.
@@ -58,6 +77,11 @@ public class ClientePrioridade extends JFrame {
 		btnPreferencial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ClienteRetirarSenha clienteRetirarSenha = new ClienteRetirarSenha();
+				
+				 prioridade =1 ;
+					
+				clienteRetirarSenha.setPrioridade(prioridade);
+				clienteRetirarSenha.setServico(servico);
 				clienteRetirarSenha.setVisible(true);
 				dispose();
 			}
@@ -67,6 +91,18 @@ public class ClientePrioridade extends JFrame {
 		contentPane.add(btnPreferencial);
 		
 		JButton btnNormal = new JButton("Normal");
+		btnNormal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ClienteRetirarSenha clienteRetirarSenha = new ClienteRetirarSenha();
+				prioridade =0;			
+				clienteRetirarSenha.setPrioridade(prioridade);
+				clienteRetirarSenha.setServico(servico);	
+				clienteRetirarSenha.setVisible(true);
+		dispose();	
+				
+				
+			}
+		});
 		btnNormal.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		btnNormal.setBounds(196, 240, 252, 68);
 		contentPane.add(btnNormal);
