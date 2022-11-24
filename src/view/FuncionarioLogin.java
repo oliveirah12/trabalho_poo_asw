@@ -30,22 +30,22 @@ public class FuncionarioLogin extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+	EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					FuncionarioLogin frame = new FuncionarioLogin();
-					frame.setVisible(true);
+			try {
+  				FuncionarioLogin frame = new FuncionarioLogin(         );
+				frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
 			}
+		}
 		});
-	}
+	 }
 
 	/**
 	 * Create the frame.
 	 */
-	public FuncionarioLogin() {
+	public FuncionarioLogin(  ) {
 		setTitle("Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 301, 407);
@@ -127,7 +127,9 @@ public class FuncionarioLogin extends JFrame {
 					break ;	
 					
 				case "atendente":
-					FuncionarioAtendente tela1 = new FuncionarioAtendente();
+					EntradaGuiche tela1 = new EntradaGuiche( f );
+					
+					
 					tela1.setVisible(true);
 				dispose();
 					break ;	

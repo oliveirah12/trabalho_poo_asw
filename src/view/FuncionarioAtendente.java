@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
 import controller.SenhaController;
+import modelo.entidade.Guiche;
 import modelo.entidade.Senha;
 
 import java.awt.Color;
@@ -37,29 +38,29 @@ public class FuncionarioAtendente extends JFrame {
 	private JPanel contentPane;
 	private JTextField textSenha;
 	private JTextField textStatus;
-	private int p=0 ;
 	private  Senha s = new Senha ();
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FuncionarioAtendente frame = new FuncionarioAtendente();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//**	public static void main(String[] args) {
+//	*	EventQueue.invokeLater(new Runnable() {
+//	*		public void run() {
+//	*			try {
+//	*				FuncionarioAtendente frame = new FuncionarioAtendente();
+//	*				frame.setVisible(true);
+//	*			} catch (Exception e) {
+//	*				e.printStackTrace();
+//				}
+//			}
+//		});
+//	}  
+//   */
 
 	/**
 	 * Create the frame.
 	 */
-	public FuncionarioAtendente() {
+	public FuncionarioAtendente(  Guiche   guiche   ) {
 		setTitle("Atendimento");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -160,37 +161,13 @@ public class FuncionarioAtendente extends JFrame {
 		btnChamar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-		
 				
-		if( p < 2)	{	
 				 SenhaController controller = new SenhaController();
-		         s =   controller.chamarSenhap(FuncionarioAtendente.this);	
-		         
+				
+		         s =   controller.chamarSenha(FuncionarioAtendente.this  ,guiche  );	
+		       
 		         textSenha.setText(String.valueOf (+ s.getNumero() ));
-		         textStatus.setText(String.valueOf (+ s.getPrioridade() ));
-		         p ++ ;   
-		         JOptionPane.showMessageDialog(null," "+ p);
-		}
-		
-		  
-				
-		else { 
-			
-			
-			
-			
-			
-			
-			JOptionPane.showMessageDialog(null," fila normal ");
-			
-			p = 0 ;
-			
-		}
-				
-				
-				
-				
-				
+		         textStatus.setText(String.valueOf (+ s.getPrioridade() ));		
 				
 			}
 		});

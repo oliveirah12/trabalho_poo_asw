@@ -16,7 +16,6 @@ import javax.swing.border.TitledBorder;
 
 import controller.FuncionarioController;
 import controller.SenhaController;
-import modelo.entidade.InformarSenha;
 import modelo.entidade.Senha;
 
 import javax.swing.SpringLayout;
@@ -97,8 +96,6 @@ public class ClienteRetirarSenha extends JFrame {
 			         textPrioridade.setText(String.valueOf (+ s.getPrioridade() ));
 			         
 			      //   textHoraData.setText( dataFormatada  );
-			         
-			         
 		        	 }
 		});
 		btnRetirarSenha.setFont(new Font("Tahoma", Font.PLAIN, 36));

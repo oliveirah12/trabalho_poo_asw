@@ -1,8 +1,6 @@
 package controller;
 
 
-import java.sql.ResultSet;
-
 import javax.swing.JOptionPane;
 
 

@@ -1,6 +1,5 @@
 package modelo.entidade;
 
-import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,7 +11,10 @@ public class Senha {
 	private int prioridade ;
 	private int servico ;
 	private int numero ;
-	private  Calendar HoraData ;
+	private String status ;
+	private Calendar HoraData ;
+	
+	
 	
 	public int getPrioridade() {
 		return prioridade;
@@ -37,6 +39,12 @@ public class Senha {
 	}
 	public void setHoraData(Calendar horaData) {
 		HoraData = horaData;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	

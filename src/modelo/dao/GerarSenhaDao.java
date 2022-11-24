@@ -4,14 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-
-
 import javax.swing.JOptionPane;
 
 import modelo.entidade.Funcionario;
-import modelo.entidade.InformarSenha;
+import modelo.entidade.Guiche;
 import modelo.entidade.Senha;
+import modelo.entidade.Servico;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -131,14 +129,15 @@ public class GerarSenhaDao {
 	            
 	            if (consulta.next()) {	
 	            
-	            	  JOptionPane.showMessageDialog(null," erro ");
+	            
 	            
 	            ls.setNumero(consulta.getInt("min(idSENHA)"));
 	            ls.setPrioridade(consulta.getInt("PRIORIDADE_idPrioridade"));
 	            
-	         //   listaSenha.add (ls);  
+	        
 	            }
 	            stmt.execute();
+	            
 			    JOptionPane.showMessageDialog(null," lista gerada ");
 	            stmt.close();
 	          
@@ -153,6 +152,61 @@ public class GerarSenhaDao {
 	            
 	             }
 			return null;}
+	     
+	     
+   public Senha chamarSenha(Senha senha) {
+	    	 
+	    	 String sql = "SELECT min(idSENHA),PRIORIDADE_idPrioridade FROM senha "
+	    	 		+ "WHERE senha_status = 'Cadastrada'and PRIORIDADE_idPrioridade = ? AND SERVICO_idServico = ? ;";
+			 conn  = new Conexao ().Conexao();
+			 
+			  
+		
+			
+	        try {  
+	        	
+	        	
+	        	
+	        	stmt = conn.prepareStatement(sql);
+	        	stmt.setLong(1,   senha. getPrioridade());
+	        	stmt.setLong(2,   senha. getServico());
+	            consulta =  stmt.executeQuery();
+	            Senha ls =new Senha();	
+	            
+	            
+	            if (consulta.next()) {	
+	 	 
+	            ls.setNumero(consulta.getInt("min(idSENHA)"));
+	            ls.setPrioridade(consulta.getInt("PRIORIDADE_idPrioridade"));
+	            
+	        
+	            }
+	            stmt.execute();
+	            stmt.close();
+	          
+	            
+	            return ls ;
+	            
+	             }
+	        
+	     
+	        catch (SQLException erro) {
+	        	 JOptionPane.showMessageDialog(null," lista SenhaDao "+erro);
+	            
+	             }
+			return null;}
+	     
+	     
+	     
+	     
+	     
+	     
+	     
+	     
+	     
+	     
+	     
+	     
 	     
   public void finaliza(Senha idSenha) {
 	    	 
@@ -185,20 +239,4 @@ public class GerarSenhaDao {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

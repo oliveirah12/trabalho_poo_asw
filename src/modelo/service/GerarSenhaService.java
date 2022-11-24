@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import modelo.dao.GerarSenhaDao;
 import modelo.dao.LoginDao;
 import modelo.entidade.Funcionario;
-import modelo.entidade.InformarSenha;
+import modelo.entidade.Guiche;
 import modelo.entidade.Senha;
+import modelo.entidade.Servico;
 
 public class GerarSenhaService {
 	
@@ -27,9 +28,9 @@ public class GerarSenhaService {
 	
     }
         
- public Senha chamarSenhap() {
+ public Senha chamarSenha(Senha s) {
         
-		return  dao.chamarSenhap() ;
+		return  dao.chamarSenha(s) ;
 	
     }
  

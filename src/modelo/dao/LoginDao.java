@@ -40,6 +40,8 @@ public class LoginDao {
       	 if (consulta.next()) {
            
              f.setCargo(consulta.getString("cargo"));
+             f.setMatricula(consulta.getInt("matricula"));
+            
              return f ;
              }
       

@@ -3,7 +3,9 @@ package controller;
 
 import java.util.ArrayList;
 
-import modelo.entidade.InformarSenha;
+import javax.swing.JOptionPane;
+
+import modelo.entidade.Guiche;
 import modelo.entidade.Senha;
 import modelo.service.GerarSenhaService;
 import view.ClienteRetirarSenha;
@@ -29,11 +31,52 @@ private ArrayList<String> listaSenha  = new ArrayList() ;
 	        return service.informarSenha();
 		     }
 	   
-	   public  Senha chamarSenhap(FuncionarioAtendente frame) {
+	   public  Senha chamarSenha(FuncionarioAtendente frame, Guiche g ) {
+		  
+		
+		   int n =0 ;
+		   Senha s = new Senha ();
+		   int [ ] vetor = new int[3];
+		   
+		  
+		   vetor[0]= g.getServico1() ;
+		   vetor[1]= g.getServico2() ;
+		   vetor[2]= g.getServico3() ;
 		   
 		   
-		   GerarSenhaService service = new  GerarSenhaService(); 	   
-		return  service.chamarSenhap();   }
+		   
+		   int prioridade = 1 ;
+		   
+		 
+		  do { 
+			 
+		 
+		  s.setPrioridade(prioridade);
+		  s.setServico(vetor[n]);
+		  GerarSenhaService service = new  GerarSenhaService(); 	   
+	      s  =  service.chamarSenha(s); 
+	      n ++ ;
+	      
+		  }while( s. getNumero() == 0 && n < 3 );
+		  
+		
+		  if( s. getNumero() == 0 )  {
+			  prioridade = 0 ;
+			  n=0 ;
+			  
+			  do {  
+				  s.setPrioridade(prioridade);
+				  s.setServico(vetor[n]);
+				  GerarSenhaService service = new  GerarSenhaService(); 	   
+			      s  =  service.chamarSenha(s); 
+			      n ++ ;
+			  }while( s. getNumero() == 0 && n < 3 );
+			  
+		   }
+		  
+  
+		  	
+		return s;    }
 	   
 	   
   public  void finalizaSenha(FuncionarioAtendente frame ,Senha id) {
