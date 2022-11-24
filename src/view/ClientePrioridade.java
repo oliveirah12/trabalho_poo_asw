@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 
 public class ClientePrioridade extends JFrame {
 	
-	//gfdgfdghfjhfgttf
+	//gfdgfdghfjhfgttfsdkdnkjsdngskjgsgnd
 
 	private JPanel contentPane;
 	private int servico ;
