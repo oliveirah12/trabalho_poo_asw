@@ -24,5 +24,9 @@ public class GuicheService {
 	        
 			return  dao.entradaGuiche( g ) ;
 			}
+	    public Guiche servicoNome( Guiche g) {
+	        
+	 			return  dao.servicoNome( g ) ;
+	 			}
 
 }

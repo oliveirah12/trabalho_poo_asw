@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -114,7 +112,10 @@ public class EntradaGuiche extends JFrame {
 				  
 				g =  controller. entradaGuiche(EntradaGuiche.this,ng,f_id);
 				
+				
 				FuncionarioAtendente funcionarioLogin = new FuncionarioAtendente(g);
+				
+				  
 				funcionarioLogin.setVisible(true);
 				dispose();		
 				

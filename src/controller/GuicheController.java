@@ -2,7 +2,6 @@ package controller;
 
 import modelo.entidade.Funcionario;
 import modelo.entidade.Guiche;
-import modelo.service.FuncionarioService;
 import modelo.service.GuicheService;
 
 import view.EntradaGuiche;
@@ -24,6 +23,18 @@ public class GuicheController {
 	       
 	        
 			return  service.entradaGuiche(g);
+	       
+		   
+		   
+	   }
+	 
+	 
+	 public Guiche servicoNome(Guiche g ) {
+		
+	        
+	        GuicheService service = new GuicheService();
+	        
+			return  service.servicoNome(g);
 	       
 		   
 		   

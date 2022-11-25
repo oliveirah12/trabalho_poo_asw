@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Funcionario extends JFrame {
+public class FuncionarioFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textNome;
@@ -26,7 +26,7 @@ public class Funcionario extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Funcionario frame = new Funcionario();
+					FuncionarioFrame frame = new FuncionarioFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,7 +38,7 @@ public class Funcionario extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Funcionario() {
+	public FuncionarioFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

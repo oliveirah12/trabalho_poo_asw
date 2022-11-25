@@ -96,6 +96,12 @@ public class ClienteRetirarSenha extends JFrame {
 			         textPrioridade.setText(String.valueOf (+ s.getPrioridade() ));
 			         
 			      //   textHoraData.setText( dataFormatada  );
+			            ClienteServicos tela0 = new ClienteServicos(); 
+					   	tela0.setVisible(true);
+						dispose();
+			         
+			         
+			         
 		        	 }
 		});
 		btnRetirarSenha.setFont(new Font("Tahoma", Font.PLAIN, 36));

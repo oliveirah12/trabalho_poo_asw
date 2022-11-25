@@ -1,7 +1,5 @@
 package modelo.entidade;
 
-import java.util.ArrayList;
-
 public class Guiche {
 	
 	private int     numeroGuiche ;
@@ -10,7 +8,9 @@ public class Guiche {
 	private int     servico2  ;
 	private int     servico3  ;
 	
-
+	private String     nServico1  ;
+	private String     nServico2  ;
+	private String     nServico3  ;
 	
 	
 	
@@ -46,6 +46,24 @@ public class Guiche {
 	}
 	public void setFuncinarioGuiche(int funcinarioGuiche) {
 		this.funcinarioGuiche = funcinarioGuiche;
+	}
+	public String getnServico1() {
+		return nServico1;
+	}
+	public void setnServico1(String nServico1) {
+		this.nServico1 = nServico1;
+	}
+	public String getnServico2() {
+		return nServico2;
+	}
+	public void setnServico2(String nServico2) {
+		this.nServico2 = nServico2;
+	}
+	public String getnServico3() {
+		return nServico3;
+	}
+	public void setnServico3(String nServico3) {
+		this.nServico3 = nServico3;
 	}
 
 	

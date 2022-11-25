@@ -31,7 +31,7 @@ private ArrayList<String> listaSenha  = new ArrayList() ;
 	        return service.informarSenha();
 		     }
 	   
-	   public  Senha chamarSenha(FuncionarioAtendente frame, Guiche g ) {
+	   public  Senha chamarSenha(FuncionarioAtendente frame,  Guiche g ) {
 		  
 		
 		   int n =0 ;
@@ -44,10 +44,12 @@ private ArrayList<String> listaSenha  = new ArrayList() ;
 		   vetor[2]= g.getServico3() ;
 		   
 		   
+		 int  controleAt = 0 ;
+		 int  prioridade = 1 ;
 		   
-		   int prioridade = 1 ;
-		   
-		 
+		 if( controleAt < 2  ) {
+			 
+			 controleAt ++ ;
 		  do { 
 			 
 		 
@@ -58,9 +60,10 @@ private ArrayList<String> listaSenha  = new ArrayList() ;
 	      n ++ ;
 	      
 		  }while( s. getNumero() == 0 && n < 3 );
-		  
+		  }
 		
 		  if( s. getNumero() == 0 )  {
+			  controleAt = 0 ;
 			  prioridade = 0 ;
 			  n=0 ;
 			  
@@ -69,7 +72,7 @@ private ArrayList<String> listaSenha  = new ArrayList() ;
 				  s.setServico(vetor[n]);
 				  GerarSenhaService service = new  GerarSenhaService(); 	   
 			      s  =  service.chamarSenha(s); 
-			      n ++ ;
+			      n ++ ; 
 			  }while( s. getNumero() == 0 && n < 3 );
 			  
 		   }

@@ -10,13 +10,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
+import controller.FuncionarioController;
+import controller.GuicheController;
 import controller.SenhaController;
+import modelo.entidade.Funcionario;
 import modelo.entidade.Guiche;
 import modelo.entidade.Senha;
 
 import java.awt.Color;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -39,23 +40,32 @@ public class FuncionarioAtendente extends JFrame {
 	private JTextField textSenha;
 	private JTextField textStatus;
 	private  Senha s = new Senha ();
+	private JTextField txtGuiche;
+	private JTextField textUsuario;
+	private JTextField txtHoraData;
+	private JTextField textSer1;
+	private JTextField textSer2;
+	private JTextField textSer3;
 
-	/**
-	 * Launch the application.
-	 */
-//**	public static void main(String[] args) {
-//	*	EventQueue.invokeLater(new Runnable() {
-//	*		public void run() {
-//	*			try {
-//	*				FuncionarioAtendente frame = new FuncionarioAtendente();
-//	*				frame.setVisible(true);
-//	*			} catch (Exception e) {
-//	*				e.printStackTrace();
-//				}
-//			}
-//		});
-//	}  
-//   */
+	/*
+	
+	  Launch the application.
+		public static void main(String[] args) {
+	EventQueue.invokeLater(new Runnable() {
+		public void run() {
+			
+			
+			try {
+				FuncionarioAtendente frame = new FuncionarioAtendente( );
+		    	frame.setVisible(true);
+	           } catch (Exception e) {
+	  			e.printStackTrace();
+			}
+		}
+	});
+	}  
+	*/
+  
 
 	/**
 	 * Create the frame.
@@ -79,9 +89,45 @@ public class FuncionarioAtendente extends JFrame {
 		
 		JLabel lblAtendendo = new JLabel("Atendendo:");
 		lblAtendendo.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblAtendendo.setBounds(10, 11, 83, 20);
+		lblAtendendo.setBounds(12, 9, 83, 20);
 		panelCabecalho.add(lblAtendendo);
 		
+		 
+		/*  nome servicos guiche */
+		Guiche g = new Guiche ();
+		
+		 GuicheController controller = new GuicheController();
+         g =  controller.servicoNome(guiche );	
+		
+		
+		textSer1 = new JTextField();
+		textSer1.setEditable(false);
+		textSer1.setBounds(105, 11, 184, 20);
+		panelCabecalho.add(textSer1);
+		textSer1.setColumns(10);
+		textSer1.setText(  g. getnServico1());
+	
+		
+		
+		textSer2 = new JTextField();
+		textSer2.setEditable(false);
+		textSer2.setBounds(299, 11, 199, 20);
+		panelCabecalho.add(textSer2);
+		textSer2.setColumns(10);
+		textSer2.setText(  g. getnServico2());
+		
+		
+			
+		
+		textSer3 = new JTextField();
+		textSer3.setEditable(false);
+		textSer3.setBounds(508, 13, 181, 20);
+		panelCabecalho.add(textSer3);
+		textSer3.setColumns(10);
+		textSer3.setText(  g. getnServico3());
+		
+		 
+		  
 		JPanel panelInfos = new JPanel();
 		panelInfos.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelInfos.setBounds(0, 399, 699, 23);
@@ -91,10 +137,6 @@ public class FuncionarioAtendente extends JFrame {
 		JLabel lblUsuario = new JLabel(" Usu\u00E1rio:");
 		lblUsuario.setBounds(0, 0, 62, 23);
 		panelInfos.add(lblUsuario);
-		
-		JLabel lblUsuarioBd = new JLabel("USUARIO");
-		lblUsuarioBd.setBounds(65, 0, 91, 23);
-		panelInfos.add(lblUsuarioBd);
 		
 		JLabel lblSeparador = new JLabel("|");
 		lblSeparador.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -110,65 +152,84 @@ public class FuncionarioAtendente extends JFrame {
 		lblGuiche.setBounds(237, 0, 46, 23);
 		panelInfos.add(lblGuiche);
 		
-		JLabel lblGuicheBd = new JLabel("1");
-		lblGuicheBd.setBounds(316, 0, 46, 23);
-		panelInfos.add(lblGuicheBd);
+		txtGuiche = new JTextField();
+		txtGuiche.setEditable(false);
+		txtGuiche.setBounds(280, 1, 86, 20);
+		panelInfos.add(txtGuiche);
+		txtGuiche.setColumns(10);
 		
-		JLabel lblHora = new JLabel("HH:mm:ss");
-		lblHora.setBounds(414, 4, 62, 14);
-		panelInfos.add(lblHora);
+		txtGuiche.setText(  String.valueOf (+guiche.getNumeroGuiche()));
+		
+		
+		
+		textUsuario = new JTextField();
+		textUsuario.setEditable(false);
+		textUsuario.setBounds(55, 1, 86, 20);
+		panelInfos.add(textUsuario);
+		textUsuario.setColumns(10);
+		
+		Funcionario f = new Funcionario ();
+		f.setMatricula(guiche.getFuncinarioGuiche());
+		
+		FuncionarioController controlle = new FuncionarioController();
+        f= controlle.pesquisar( f );
+        textUsuario.setText(   f.getNome()) ;
+		
+		
+		txtHoraData = new JTextField();
+		txtHoraData.setEditable(false);
+		txtHoraData.setBounds(423, 1, 173, 20);
+		panelInfos.add(txtHoraData);
+		txtHoraData.setColumns(10);
+		
+	/*	Date data = new Date (10);
+		txtHoraData.setText(String.valueOf (data ));	*/
 		
 		JLabel lblSenha = new JLabel("Senha  :");
 		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblSenha.setBounds(10, 62, 92, 27);
+		lblSenha.setBounds(42, 110, 92, 27);
 		contentPane.add(lblSenha);
 		
-		JLabel lblStatus = new JLabel("Status :");
+		JLabel lblStatus = new JLabel("Prioridade :");
 		lblStatus.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblStatus.setBounds(10, 148, 75, 27);
+		lblStatus.setBounds(10, 64, 134, 27);
 		contentPane.add(lblStatus);
+		
+		/*botao finalizar*/
 		
 		JButton btnFinalizar = new JButton("Finalizar");
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				
-				
 				 SenhaController controller = new SenhaController();
-		         controller.finalizaSenha(FuncionarioAtendente.this , s );
-				
-				
-				
-				
-				
-			}
+		         controller.finalizaSenha(FuncionarioAtendente.this , s );	
+					}
 		});
 		btnFinalizar.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnFinalizar.setBounds(502, 300, 187, 49);
 		contentPane.add(btnFinalizar);
 		
 		JButton btnAusente = new JButton("Ausente");
+		btnAusente.setEnabled(false);
 		btnAusente.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnAusente.setBounds(502, 246, 187, 49);
 		contentPane.add(btnAusente);
 		
 		JButton btnIniciar = new JButton("Iniciar");
+		btnIniciar.setEnabled(false);
 		btnIniciar.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnIniciar.setBounds(502, 193, 187, 49);
 		contentPane.add(btnIniciar);
+		
+		/* botao Chamar*/
 		
 		JButton btnChamar = new JButton("Chamar");
 		btnChamar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				
 				 SenhaController controller = new SenhaController();
-				
-		         s =   controller.chamarSenha(FuncionarioAtendente.this  ,guiche  );	
-		       
+		         s =   controller.chamarSenha(FuncionarioAtendente.this , guiche );
 		         textSenha.setText(String.valueOf (+ s.getNumero() ));
-		         textStatus.setText(String.valueOf (+ s.getPrioridade() ));		
-				
+		         textStatus.setText(String.valueOf (+ s.getPrioridade() ));				
 			}
 		});
 		btnChamar.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -176,6 +237,7 @@ public class FuncionarioAtendente extends JFrame {
 		contentPane.add(btnChamar);
 		
 		JButton btnRepetir = new JButton("Repetir");
+		btnRepetir.setEnabled(false);
 		btnRepetir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -235,12 +297,14 @@ public class FuncionarioAtendente extends JFrame {
 		contentPane.add(lblTempo);
 		
 		textSenha = new JTextField();
-		textSenha.setBounds(102, 70, 113, 20);
+		textSenha.setEditable(false);
+		textSenha.setBounds(156, 118, 113, 20);
 		contentPane.add(textSenha);
 		textSenha.setColumns(10);
 		
 		textStatus = new JTextField();
-		textStatus.setBounds(95, 156, 120, 20);
+		textStatus.setEditable(false);
+		textStatus.setBounds(154, 72, 61, 20);
 		contentPane.add(textStatus);
 		textStatus.setColumns(10);
 	}
