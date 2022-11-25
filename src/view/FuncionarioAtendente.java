@@ -46,6 +46,8 @@ public class FuncionarioAtendente extends JFrame {
 	private JTextField textSer1;
 	private JTextField textSer2;
 	private JTextField textSer3;
+	private int prioridade = 0 ;
+	
 
 	/*
 	
@@ -226,10 +228,16 @@ public class FuncionarioAtendente extends JFrame {
 		btnChamar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				
 				 SenhaController controller = new SenhaController();
-		         s =   controller.chamarSenha(FuncionarioAtendente.this , guiche );
+		         s =   controller.chamarSenha(FuncionarioAtendente.this , guiche , prioridade );
 		         textSenha.setText(String.valueOf (+ s.getNumero() ));
-		         textStatus.setText(String.valueOf (+ s.getPrioridade() ));				
+		         textStatus.setText(String.valueOf (+ s.getPrioridade() ));		
+		         
+		         if ( s.getPrioridade()  ==  1    ) {  prioridade++ ;
+		         }else { prioridade = 0 ;                   }       
+		         
+		         
 			}
 		});
 		btnChamar.setFont(new Font("Tahoma", Font.PLAIN, 14));
