@@ -89,20 +89,11 @@ public class ClienteRetirarSenha extends JFrame {
 			         textPrioridade.setText(String.valueOf (+ s.getPrioridade() ));
 			      
 		        	}
-			      
-			     
-			         
-			        if (2 == n) {
+	                	else {
 			        	
 			        	ClienteServicos tela1 = new ClienteServicos(); 
 						tela1.setVisible(true);
-						dispose();		
-			        	
-			        	
-			        	
-			        	
-			        	
-			        }
+						dispose();	    }
 			        
 			        
 				      //   textPrioridade.setText(String.valueOf (+ s.getPrioridade() ));
