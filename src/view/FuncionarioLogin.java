@@ -121,17 +121,15 @@ public class FuncionarioLogin extends JFrame {
       
 		switch (f.getCargo()){	
 				case "adm" :
-					MenuGerente tela0 = new MenuGerente();
+					MenuGerente tela0 = new MenuGerente(f);
 					tela0.setVisible(true);
 				dispose();
 					break ;	
 					
 				case "atendente":
 					EntradaGuiche tela1 = new EntradaGuiche( f );
-					
-					
 					tela1.setVisible(true);
-				dispose();
+				    dispose();
 					break ;	
 					
 				

@@ -5,9 +5,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modelo.entidade.Funcionario;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MenuGerente extends JFrame {
 
@@ -16,7 +21,7 @@ public class MenuGerente extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -32,7 +37,7 @@ public class MenuGerente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MenuGerente() {
+	public MenuGerente(Funcionario f) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -41,9 +46,19 @@ public class MenuGerente extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(144, 116, 133, 23);
-		contentPane.add(btnNewButton);
+		JButton btnTelat = new JButton("Guiche");
+		btnTelat.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				EntradaGuiche tela1 = new EntradaGuiche( f );
+				tela1.setVisible(true);
+			    dispose();
+				
+				
+			}
+		});
+		btnTelat.setBounds(144, 116, 133, 23);
+		contentPane.add(btnTelat);
 		
 		JButton btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.setBounds(144, 150, 133, 23);

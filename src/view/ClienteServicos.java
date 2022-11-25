@@ -60,7 +60,7 @@ public class ClienteServicos extends JFrame {
 		contentPane.add(lblLinha);
 		
 		// nome do botao 
-		JButton btnServico1 = new JButton("enserir a variavel aki \u00E7o ");
+		JButton btnServico1 = new JButton("Servi\u00E7o 1");
 		btnServico1.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {

@@ -37,8 +37,8 @@ public class ClienteRetirarSenha extends JFrame {
 	private JTextField textSenha;
 	private JTextField textPrioridade;
 	private JTextField textHoraData;
-
-	
+    private  Senha s = new Senha ();
+	private  int    n=0 ;
 
 
 
@@ -76,33 +76,46 @@ public class ClienteRetirarSenha extends JFrame {
 		lblTempoEstimado.setBounds(267, 151, 112, 22);
 		contentPane.add(lblTempoEstimado);
 		
-		JButton btnRetirarSenha = new JButton("Retirar Senha");
+		JButton btnRetirarSenha = new JButton("Retirar Senha ");
 		btnRetirarSenha.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-				
-				
-				  
-		         
-		        	 Senha s = new Senha ();
+	
+			  n++;
+		        	if (n == 1) {
+		        		
 					 SenhaController controller = new SenhaController();
 			         s =   controller.salvarSenha(ClienteRetirarSenha.this);
+			         textSenha.setText(String.valueOf (+ s.getNumero() ));
+			         textPrioridade.setText(String.valueOf (+ s.getPrioridade() ));
+			      
+		        	}
+			      
+			     
 			         
+			        if (2 == n) {
+			        	
+			        	ClienteServicos tela1 = new ClienteServicos(); 
+						tela1.setVisible(true);
+						dispose();		
+			        	
+			        	
+			        	
+			        	
+			        	
+			        }
+			        
+			        
+				      //   textPrioridade.setText(String.valueOf (+ s.getPrioridade() ));
+				   //   textPrioridade.setText(String.valueOf (+ s.getPrioridade() ));
 			      //   DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 			       //  String dataFormatada = dateFormat.format(s.getHoraData());
 			         
 			      //   JOptionPane.showMessageDialog(null,"" + dataFormatada);
 			         
-			         textSenha.setText(String.valueOf (+ s.getNumero() ));
-			         textPrioridade.setText(String.valueOf (+ s.getPrioridade() ));
+			        
 			         
 			      //   textHoraData.setText( dataFormatada  );
-			            ClienteServicos tela0 = new ClienteServicos(); 
-					   	tela0.setVisible(true);
-						dispose();
-			         
-			         
-			         
-		        	 }
+}
 		});
 		btnRetirarSenha.setFont(new Font("Tahoma", Font.PLAIN, 36));
 		btnRetirarSenha.setBounds(77, 295, 503, 73);
@@ -113,18 +126,24 @@ public class ClienteRetirarSenha extends JFrame {
 		textSenha.setBounds(303, 49, 124, 56);
 		contentPane.add(textSenha);
 		textSenha.setColumns(10);
+		textSenha.setText(String.valueOf (+ s.getNumero() ));
 		
 		textPrioridade = new JTextField();
 		textPrioridade.setEditable(false);
 		textPrioridade.setBounds(213, 49, 86, 56);
 		contentPane.add(textPrioridade);
 		textPrioridade.setColumns(10);
+		textPrioridade.setText(String.valueOf (+ s.getPrioridade() ));
 		
 		textHoraData = new JTextField();
 		textHoraData.setEnabled(false);
 		textHoraData.setBounds(183, 202, 295, 49);
 		contentPane.add(textHoraData);
 		textHoraData.setColumns(10);
+		
+		
+		
+		
 	}
 
 	public JTextField getTextSenha() {
