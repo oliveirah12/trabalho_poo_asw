@@ -118,7 +118,7 @@ private 	Funcionario  fPesquisa = new Funcionario () ;
 	
 	
 	
-	 public Funcionario pesquisarFuncionario (Funcionario funcionario ){ 
+	 public Funcionario pesquisar(Funcionario funcionario ){ 
 		 
 		 
 		 String sql = "select * from funcionario where matricula=?";
@@ -136,7 +136,7 @@ private 	Funcionario  fPesquisa = new Funcionario () ;
             
             if (consulta.next()) {
             
-            f.setNome(consulta.getString("nome"));
+            f.setNome(consulta.getString("nomeFuncionario"));
             f.setMatricula(consulta.getInt("matricula"));
             f.setCargo(consulta.getString("cargo"));
             f.setSenha(consulta.getString("senha")); 

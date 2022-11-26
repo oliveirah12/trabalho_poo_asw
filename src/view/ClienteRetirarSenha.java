@@ -6,18 +6,41 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
+
+import controller.FuncionarioController;
+import controller.SenhaController;
+import modelo.entidade.Senha;
+
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
 public class ClienteRetirarSenha extends JFrame {
 
 	private JPanel contentPane;
+	private int servico ;
+	private int prioridade ;
+	private JTextField textSenha;
+	private JTextField textPrioridade;
+	private JTextField textHoraData;
+    private  Senha s = new Senha ();
+	private  int    n=0 ;
+
+
 
 	/**
 	 * Launch the application.
@@ -48,35 +71,113 @@ public class ClienteRetirarSenha extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		panel.setBounds(149, 11, 371, 92);
-		contentPane.add(panel);
-		SpringLayout sl_panel = new SpringLayout();
-		panel.setLayout(sl_panel);
-		
-		JLabel lblSenha = new JLabel("Senha XX");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblSenha, 20, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, lblSenha, 45, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblSenha, -29, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, lblSenha, -52, SpringLayout.EAST, panel);
-		lblSenha.setHorizontalAlignment(SwingConstants.CENTER);
-		panel.add(lblSenha);
-		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		
-		JLabel lblTempoEstimado = new JLabel("Tempo estimado de espera");
+		JLabel lblTempoEstimado = new JLabel("Horario / Data");
 		lblTempoEstimado.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblTempoEstimado.setBounds(225, 156, 214, 22);
+		lblTempoEstimado.setBounds(267, 151, 112, 22);
 		contentPane.add(lblTempoEstimado);
 		
-		JLabel lblTempo = new JLabel("XX minutos");
-		lblTempo.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblTempo.setBounds(262, 189, 148, 37);
-		contentPane.add(lblTempo);
-		
-		JButton btnRetirarSenha = new JButton("Retirar Senha");
+		JButton btnRetirarSenha = new JButton("Retirar Senha ");
+		btnRetirarSenha.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+	
+			  n++;
+		        	if (n == 1) {
+		        		
+					 SenhaController controller = new SenhaController();
+			         s =   controller.salvarSenha(ClienteRetirarSenha.this);
+			         textSenha.setText(String.valueOf (+ s.getNumero() ));
+			         textPrioridade.setText(String.valueOf (+ s.getPrioridade() ));
+			      
+		        	}
+	                	else {
+			        	
+			        	ClienteServicos tela1 = new ClienteServicos(); 
+						tela1.setVisible(true);
+						dispose();	    }
+			        
+			        
+				      //   textPrioridade.setText(String.valueOf (+ s.getPrioridade() ));
+				   //   textPrioridade.setText(String.valueOf (+ s.getPrioridade() ));
+			      //   DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+			       //  String dataFormatada = dateFormat.format(s.getHoraData());
+			         
+			      //   JOptionPane.showMessageDialog(null,"" + dataFormatada);
+			         
+			        
+			         
+			      //   textHoraData.setText( dataFormatada  );
+}
+		});
 		btnRetirarSenha.setFont(new Font("Tahoma", Font.PLAIN, 36));
 		btnRetirarSenha.setBounds(77, 295, 503, 73);
 		contentPane.add(btnRetirarSenha);
+		
+		textSenha = new JTextField();
+		textSenha.setEditable(false);
+		textSenha.setBounds(303, 49, 124, 56);
+		contentPane.add(textSenha);
+		textSenha.setColumns(10);
+		textSenha.setText(String.valueOf (+ s.getNumero() ));
+		
+		textPrioridade = new JTextField();
+		textPrioridade.setEditable(false);
+		textPrioridade.setBounds(213, 49, 86, 56);
+		contentPane.add(textPrioridade);
+		textPrioridade.setColumns(10);
+		textPrioridade.setText(String.valueOf (+ s.getPrioridade() ));
+		
+		textHoraData = new JTextField();
+		textHoraData.setEnabled(false);
+		textHoraData.setBounds(183, 202, 295, 49);
+		contentPane.add(textHoraData);
+		textHoraData.setColumns(10);
+		
+		
+		
+		
 	}
+
+	public JTextField getTextSenha() {
+		return textSenha;
+	}
+
+	public void setTextSenha(JTextField textSenha) {
+		this.textSenha = textSenha;
+	}
+	
+	public JTextField getTextPrioridade() {
+		return textPrioridade;
+	}
+
+	public void setTextPrioridade(JTextField textPrioridade) {
+		this.textPrioridade = textPrioridade;
+	}
+
+	public int getServico() {
+		return servico;
+	}
+
+	public void setServico(int servico) {
+		this.servico = servico;
+	}
+
+	public int getPrioridade() {
+		return prioridade;
+	}
+
+	public void setPrioridade(int prioridade) {
+		this.prioridade = prioridade;
+	}
+	
+	public JTextField getTextHoraData() {
+		return textHoraData;
+	}
+
+	public void setTextHoraData(JTextField textHoraData) {
+		this.textHoraData = textHoraData;
+	}
+	
+	
+	
+	
 }

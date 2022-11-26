@@ -25,6 +25,10 @@ public class FuncionarioService {
 	        dao.alterar(calculo);
 	    }
 	    
+	    public Funcionario pesquisar(Funcionario calculo) {
+	     return dao.pesquisar(calculo);
+	    }
+	    
 	
 	
 	
