@@ -275,6 +275,7 @@ public class FuncionarioAtendente extends JFrame {
 		lblHoraChamada.setBounds(155, 373, 60, 15);
 		contentPane.add(lblHoraChamada);
 		
+		
 		JLabel lblIncio = new JLabel("In\u00EDcio:");
 		lblIncio.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblIncio.setBounds(225, 371, 32, 15);

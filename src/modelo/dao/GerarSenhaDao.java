@@ -209,9 +209,10 @@ public class GerarSenhaDao {
 	     
 	     
   public void finaliza(Senha idSenha) {
-	    	 
-	    	 String sql = "update senha set  senha_status = ?  WHERE idSENHA = ?;";
-			 conn  = new Conexao ().Conexao();
+	  
+	  
+	    	  String sql = "update senha set  senha_status = ? ,chamada_final =now()  WHERE idSENHA = ?;";
+			  conn  = new Conexao ().Conexao();
 			 
 			  
 		
