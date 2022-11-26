@@ -48,7 +48,7 @@ public class FuncionarioAtendente extends JFrame {
 	private JTextField textSer2;
 	private JTextField textSer3;
 	private int prioridade = 0 ;
-	
+	private int fluxoAtendimento = 0  ;
 
 	/*
 	
@@ -203,13 +203,14 @@ public class FuncionarioAtendente extends JFrame {
 		JButton btnFinalizar = new JButton("Finalizar");
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				if(fluxoAtendimento == 2 &&  s.getNumero() != 0 ) {
 				 ControleAtendente at = new  ControleAtendente();
 				 at. setStatus("finalizada");
 				 at.setHorario("chamada_final");
 				 SenhaController controller = new SenhaController();
 		         controller.status_hora(FuncionarioAtendente.this , s ,at);	
-					}
+		         fluxoAtendimento =0 ;
+				}else {JOptionPane.showMessageDialog(null,"senha  "+s.getNumero()+" nao inicializada ou ausente");}	}
 		});
 		btnFinalizar.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnFinalizar.setBounds(502, 300, 187, 49);
@@ -218,15 +219,15 @@ public class FuncionarioAtendente extends JFrame {
 		JButton btnAusente = new JButton("Ausente");
 		btnAusente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+			
+				if(fluxoAtendimento == 2 &&  s.getNumero() != 0 ) {
 				 ControleAtendente at = new  ControleAtendente();
 				 at. setStatus("ausente");
 				 at.setHorario("chamada_final");
 				 SenhaController controller = new SenhaController();
 		         controller.status_hora(FuncionarioAtendente.this , s ,at);	
-				
-				
-			}
+		         fluxoAtendimento =0 ;
+				}else {JOptionPane.showMessageDialog(null,"senha  " +s.getNumero()+ " nao inicializada ou finalizada " );} }
 		});
 		btnAusente.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnAusente.setBounds(502, 246, 187, 49);
@@ -235,12 +236,15 @@ public class FuncionarioAtendente extends JFrame {
 		JButton btnIniciar = new JButton("Iniciar");
 		btnIniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				if(fluxoAtendimento == 1 &&  s.getNumero() != 0 ) {
 				 ControleAtendente at = new  ControleAtendente();
 				 at. setStatus("iniciou");
 				 at.setHorario("chamada_inicio");
 				 SenhaController controller = new SenhaController();
-		         controller.status_hora(FuncionarioAtendente.this , s ,at);					
-			}
+		         controller.status_hora(FuncionarioAtendente.this , s ,at);	
+		         fluxoAtendimento ++ ;
+				}else {JOptionPane.showMessageDialog(null," nenhuma senha ");}}
 		});
 		btnIniciar.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnIniciar.setBounds(502, 193, 187, 49);
@@ -252,7 +256,7 @@ public class FuncionarioAtendente extends JFrame {
 		btnChamar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				
+				if (fluxoAtendimento == 0 || s.getNumero() == 0 ) {
 				 SenhaController controller = new SenhaController();
 		         s =   controller.chamarSenha(FuncionarioAtendente.this , guiche , prioridade );
 		         textSenha.setText(String.valueOf (+ s.getNumero() ));
@@ -261,8 +265,10 @@ public class FuncionarioAtendente extends JFrame {
 		         if ( s.getPrioridade()  ==  1    ) {  prioridade++ ;
 		         }else { prioridade = 0 ;                   }       
 		         
-		         
-			}
+		         fluxoAtendimento ++ ;
+			}else { JOptionPane.showMessageDialog(null,"senha sem ser finalizada ");
+				
+        	  }}
 		});
 		btnChamar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnChamar.setBounds(502, 140, 92, 49);
