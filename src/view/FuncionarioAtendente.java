@@ -13,6 +13,7 @@ import javax.swing.border.LineBorder;
 import controller.FuncionarioController;
 import controller.GuicheController;
 import controller.SenhaController;
+import modelo.entidade.ControleAtendente;
 import modelo.entidade.Funcionario;
 import modelo.entidade.Guiche;
 import modelo.entidade.Senha;
@@ -202,8 +203,12 @@ public class FuncionarioAtendente extends JFrame {
 		JButton btnFinalizar = new JButton("Finalizar");
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				 ControleAtendente at = new  ControleAtendente();
+				 at. setStatus("finalizada");
+				 at.setHorario("chamada_final");
 				 SenhaController controller = new SenhaController();
-		         controller.finalizaSenha(FuncionarioAtendente.this , s );	
+		         controller.status_hora(FuncionarioAtendente.this , s ,at);	
 					}
 		});
 		btnFinalizar.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -211,13 +216,32 @@ public class FuncionarioAtendente extends JFrame {
 		contentPane.add(btnFinalizar);
 		
 		JButton btnAusente = new JButton("Ausente");
-		btnAusente.setEnabled(false);
+		btnAusente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				 ControleAtendente at = new  ControleAtendente();
+				 at. setStatus("ausente");
+				 at.setHorario("chamada_final");
+				 SenhaController controller = new SenhaController();
+		         controller.status_hora(FuncionarioAtendente.this , s ,at);	
+				
+				
+			}
+		});
 		btnAusente.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnAusente.setBounds(502, 246, 187, 49);
 		contentPane.add(btnAusente);
 		
 		JButton btnIniciar = new JButton("Iniciar");
-		btnIniciar.setEnabled(false);
+		btnIniciar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				 ControleAtendente at = new  ControleAtendente();
+				 at. setStatus("iniciou");
+				 at.setHorario("chamada_inicio");
+				 SenhaController controller = new SenhaController();
+		         controller.status_hora(FuncionarioAtendente.this , s ,at);					
+			}
+		});
 		btnIniciar.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnIniciar.setBounds(502, 193, 187, 49);
 		contentPane.add(btnIniciar);

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
+import modelo.entidade.ControleAtendente;
 import modelo.entidade.Funcionario;
 import modelo.entidade.Guiche;
 import modelo.entidade.Senha;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 
-public class GerarSenhaDao {
+public class SenhaDao {
 	
 	Connection conn ;
 	PreparedStatement stmt ,consultaSenha ;
@@ -195,49 +196,24 @@ public class GerarSenhaDao {
 	            
 	             }
 			return null;}
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-	     
-  public void finaliza(Senha idSenha) {
-	  
-	  
-	    	  String sql = "update senha set  senha_status = ? ,chamada_final =now()  WHERE idSENHA = ?;";
+
+  public void status_hora(Senha idSenha ,ControleAtendente at) {
+	          String sql = "update senha set  senha_status = ? ,"+at.getHorario()+"=now()  WHERE idSENHA = ?;";
 			  conn  = new Conexao ().Conexao();
-			 
-			  
-		
-			
+	
 	        try {        
 	        	stmt = conn.prepareStatement(sql);
 
-	            stmt.setString(1,"finalizada");
-	            stmt.setLong(2,   idSenha.getNumero());
+	            stmt.setString(1,at.getStatus());
+	            stmt.setLong(2,idSenha.getNumero());
 	            
 	            stmt.execute();
-			    JOptionPane.showMessageDialog(null,"finalizando");
+			    JOptionPane.showMessageDialog(null,"Dado armazenado");
 	            stmt.close();
-	          
-	            
-	         
-	            
-	          }
-	        
-	     
+                }
 	        catch (SQLException erro) {
 	        	 JOptionPane.showMessageDialog(null," lista SenhaDao "+erro);
 	            
 	             }}
-	
-	
-	
+  
 }

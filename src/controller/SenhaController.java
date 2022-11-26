@@ -5,9 +5,10 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import modelo.entidade.ControleAtendente;
 import modelo.entidade.Guiche;
 import modelo.entidade.Senha;
-import modelo.service.GerarSenhaService;
+import modelo.service.SenhaService;
 import view.ClienteRetirarSenha;
 import view.FuncionarioAtendente;
 
@@ -25,7 +26,7 @@ private ArrayList<String> listaSenha  = new ArrayList() ;
 		    senha.setServico(frame.getServico());
 		  
 	        
-		    GerarSenhaService service = new  GerarSenhaService();
+		    SenhaService service = new  SenhaService();
 	        
 	        service.gerarSenha(senha);
 	        return service.informarSenha();
@@ -55,7 +56,7 @@ private ArrayList<String> listaSenha  = new ArrayList() ;
 		 
 		  s.setPrioridade(prioridade);
 		  s.setServico(vetor[n]);
-		  GerarSenhaService service = new  GerarSenhaService(); 	   
+		  SenhaService service = new  SenhaService(); 	   
 	      s  =  service.chamarSenha(s); 
 	      n ++ ;
 	      
@@ -70,7 +71,7 @@ private ArrayList<String> listaSenha  = new ArrayList() ;
 			  do {  
 				  s.setPrioridade(prioridade);
 				  s.setServico(vetor[n]);
-				  GerarSenhaService service = new  GerarSenhaService(); 	   
+				  SenhaService service = new  SenhaService(); 	   
 			      s  =  service.chamarSenha(s); 
 			      n ++ ; 
 			  }while( s. getNumero() == 0 && n < 3 );
@@ -80,22 +81,9 @@ private ArrayList<String> listaSenha  = new ArrayList() ;
   
 		  	
 		return s;    }
-	   
-	   
-  public  void finalizaSenha(FuncionarioAtendente frame ,Senha id) {
+  public  void status_hora(FuncionarioAtendente frame , Senha id, ControleAtendente at) {
 		   
 		   
-		   GerarSenhaService service = new  GerarSenhaService(); 	   
-	       service.finalizaSenha(id);  
-	       
-  }
-
-
-
-
-
-
-
-
-
-}
+		   SenhaService service = new  SenhaService(); 	   
+	       service.status_hora(id , at );  
+   }}

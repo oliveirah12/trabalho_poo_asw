@@ -2,20 +2,21 @@ package modelo.service;
 
 import java.util.ArrayList;
 
-import modelo.dao.GerarSenhaDao;
+import modelo.dao.SenhaDao;
 import modelo.dao.LoginDao;
+import modelo.entidade.ControleAtendente;
 import modelo.entidade.Funcionario;
 import modelo.entidade.Guiche;
 import modelo.entidade.Senha;
 import modelo.entidade.Servico;
 
-public class GerarSenhaService {
+public class SenhaService {
 	
 	
-	private GerarSenhaDao  dao;
+	private SenhaDao  dao;
 
-    public GerarSenhaService() {
-        this.dao = new GerarSenhaDao ();
+    public SenhaService() {
+        this.dao = new SenhaDao ();
     }
     
     public void gerarSenha(Senha calculo) {
@@ -34,8 +35,8 @@ public class GerarSenhaService {
 	
     }
  
- public void finalizaSenha(Senha calculo) {
-	    dao.finaliza(calculo);
-	    }
+ public void status_hora(Senha calculo,ControleAtendente at) {
+	    dao.status_hora(calculo,at);
+     }
 
 }
